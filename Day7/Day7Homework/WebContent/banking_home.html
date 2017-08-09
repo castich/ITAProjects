@@ -27,28 +27,31 @@ $(document).ready(function(){
 		   alert("Amount must be numeric!");
 	   }
 	   
-	   var amount = parseInt(txtAmount.val(),10);
-	   
-	   if(choice==1 && account.getDeposit()<amount){
-		   console.log("test");
-		   txtAmount.val("");
-		   alert("Insufficient funds! Withdraw transaction cancelled.");
-	   }
-	   
-	   else if(choice==1){
-		   account.deposit=account.getDeposit()-amount;
-		   alert("Successfully withdrawn "+amount+"!")
-		   $("#rowDeposit").empty();
-		   $("#rowDeposit").append(account.getDeposit());
+	   else{
+		   var amount = parseInt(txtAmount.val(),10);
 		   
+		   if(choice==1 && account.getDeposit()<amount){
+			   console.log("test");
+			   txtAmount.val("");
+			   alert("Insufficient funds! Withdraw transaction cancelled.");
+		   }
+		   
+		   else if(choice==1){
+			   account.deposit=account.getDeposit()-amount;
+			   alert("Successfully withdrawn "+amount+"!")
+			   $("#rowDeposit").empty();
+			   $("#rowDeposit").append(account.getDeposit());
+			   
+		   }
+		   
+		   else if(choice==2){
+			   account.deposit=account.getDeposit()+amount;
+			   $("#rowDeposit").empty();
+			   $("#rowDeposit").append(account.getDeposit());
+			   console.log(account.getDeposit());
+		   }
 	   }
 	   
-	   else if(choice==2){
-		   account.deposit=account.getDeposit()+amount;
-		   $("#rowDeposit").empty();
-		   $("#rowDeposit").append(account.getDeposit());
-		   console.log(account.getDeposit());
-	   }
 	   
    });
 });
